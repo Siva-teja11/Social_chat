@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-import misaka
+
 
 User = get_user_model()
 
@@ -22,7 +22,7 @@ class Group(models.Model):
     
     def save(self,*args,**kwargs):
         self.slug = slugify(self.name)
-        self.description_html = misaka.html(self.description)
+        
         super().save(*args,**kwargs)
 
     def get_absolute_url(self):
